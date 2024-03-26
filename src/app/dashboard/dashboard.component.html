@@ -1,1 +1,39 @@
-<p>dashboard works!</p>
+<div class="container">
+  <h1 class="py-5">Dashboard</h1>
+  <div class="row">
+    <div class="col-5">
+      <h2>Agendamentos</h2>
+
+      <div>
+        <div>
+          <h3>Próximo agendamento</h3>
+          <div>Jaca Melão as 11:00 até as 12:00 lavação e hidratação</div>
+        </div>
+
+        <div>
+          <h3>Manhã</h3>
+          <div>
+            <div>8:00 - 9:00></div>
+            <div>Jaboticaba Docinha</div>
+            <div>Hidratação</div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Tarde</h3>
+          <div>
+            <div>14:00 - 15:00></div>
+            <div>Jaboticaba Docinha</div>
+            <div>Corte</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-6" #calendarShort>
+      <button (click)="onAddEvent()">Add new event</button>
+    </div>
+  </div>
+</div>
