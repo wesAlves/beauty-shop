@@ -32,16 +32,17 @@ export class CalendarComponent implements OnInit {
     const weekDayIndex = today.getDay();
     const theDay = today.getDate();
 
+    console.log(weekDayIndex)
 
-    for (let i = -7+weekDayIndex; i < 35+weekDayIndex; i++) {
-      const dayDate = this.singleDay(year, monthIndex, i)
+    for (let i = 0; i < 42; i++) {
+      console.log(this.singleDay(year, monthIndex, i + weekDayIndex - 6));
+      const dayDate = this.singleDay(year, monthIndex, i + weekDayIndex - 7)
 
       if (!Object.keys(this.calendarByWeek).includes(String(dayDate.getDay()))) {
         this.calendarByWeek[dayDate.getDay()] = [];
       }
 
       this.calendarByWeek[dayDate.getDay()].push(dayDate)
-
 
     }
 

@@ -5,20 +5,12 @@ $cell-size: 48px;
   display: flex;
   flex-wrap: wrap;
 
-  width: 8*$cell-size;
+  width: 7*$cell-size;
 
 
-  .current-month {
-    opacity: 1;
-  }
-
-  .today {
-    background: yellow;
-    color: black;
-    font-weight: bold;
-  }
 
 }
+
 
 .day-container {
   width: $cell-size;
@@ -29,4 +21,14 @@ $cell-size: 48px;
   margin: 0;
   background: #ffffff22;
   opacity: .3;
+}
+
+.current-month {
+  opacity: 1;
+}
+
+.today {
+  background: yellow;
+  color: black;
+  font-weight: bold;
 }
