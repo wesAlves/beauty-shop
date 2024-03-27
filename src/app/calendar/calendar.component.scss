@@ -1,3 +1,5 @@
+@import 'bootstrap';
+
 $cell-size: 48px;
 
 .calendar-container {
@@ -6,7 +8,6 @@ $cell-size: 48px;
   flex-wrap: wrap;
 
   width: 7*$cell-size;
-
 
 
 }
@@ -21,6 +22,7 @@ $cell-size: 48px;
   margin: 0;
   background: #ffffff22;
   opacity: .3;
+  position: relative;
 }
 
 .current-month {
@@ -31,4 +33,29 @@ $cell-size: 48px;
   background: yellow;
   color: black;
   font-weight: bold;
+}
+
+.appointment {
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin: auto;
+    background: red;
+    position: absolute;
+    bottom: 6px;
+    left: calc(50% - 4px);
+    border-radius: 4px;
+  }
+
+
+}
+
+.past-event {
+  @extend .appointment;
+
+  &::before {
+    opacity: .3;
+    background: #00f;
+  }
 }

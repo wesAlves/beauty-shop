@@ -1,11 +1,15 @@
 <h3>{{ months[currentDate.getMonth()] }}</h3>
 <div class="calendar-container">
   <div *ngFor="let date of Object.values(calendarByWeek)">
-    <div class="day-container" *ngFor="let day of date"
-         [ngClass]="{'current-month': day.getMonth() === currentDate.getMonth(), 'today': currentDate.getDate() === day.getDate() && day.getMonth() === currentDate.getMonth() }">{{ day.getDate() }}
+    <div class="day-container appointment" *ngFor="let day of date"
+         [ngClass]="{
+         'current-month': day.getMonth() === currentDate.getMonth(),
+         'today': currentDate.getDate() === day.getDate() && day.getMonth() === currentDate.getMonth(),
+         'past-event': currentDate > day
+         }">
+      {{ day.getDate() }}
     </div>
   </div>
 
-  <!--  <div class="day-container" *ngFor="let day of calendarByWeek" >{{day.getDate()}}</div>-->
 
 </div>
