@@ -1,10 +1,6 @@
 <h3>{{ months[currentDate.getMonth()] }}</h3>
-<ul class="calendar-container">
-  <li *ngFor="let date of datesToCalendar"
-      [ngClass]="{
-      'current-month': date.getMonth() === currentDate.getMonth(),
-      'today': date.getDate() === currentDate.getDate()
-      }">
-    {{ date.getDate() }}
-  </li>
-</ul>
+<div class="calendar-container">
+  <div  *ngFor="let date of Object.values(calendarByWeek)">
+    <div class="day-container" *ngFor="let day of date">{{ day.getDate() }}</div>
+  </div>
+</div>

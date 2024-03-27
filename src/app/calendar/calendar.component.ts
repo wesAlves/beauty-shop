@@ -10,8 +10,11 @@ export class CalendarComponent implements OnInit {
   months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Setembro", "Outrubro", "Novembro", "Dezembor"]
   weekdays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sesta-feira", "Sábado"]
 
-  datesToCalendar: Date[] = [];
   currentDate: Date = new Date();
+  // base_second = 86400e3;
+
+  calendarByWeek: Record<string, Date[]> = {}
+
 
   constructor() {
   }
@@ -19,22 +22,37 @@ export class CalendarComponent implements OnInit {
   //TODO: Full calendar must have 5 rows
   // thumbnail calendar must have 6 rows
   ngOnInit() {
-    const base_second = 86400e3;
-    const rightNow = Date.now();
-    this.currentDate = new Date(rightNow);
+    this.calendar()
+  }
+
+  calendar = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const monthIndex = today.getMonth();
+    const weekDayIndex = today.getDay();
+    const theDay = today.getDate();
 
 
-    for (let day = 42; day > 0; day--) {
+    for (let i = -7+weekDayIndex; i < 35+weekDayIndex; i++) {
+      const dayDate = this.singleDay(year, monthIndex, i)
 
-      const weekToEnd = 2
+      if (!Object.keys(this.calendarByWeek).includes(String(dayDate.getDay()))) {
+        this.calendarByWeek[dayDate.getDay()] = [];
+      }
 
-      const dayToCalendar = (this.currentDate.getDate() - (day + weekToEnd * 7)) * base_second
-      const dateToCalendar = new Date(rightNow + dayToCalendar)
+      this.calendarByWeek[dayDate.getDay()].push(dayDate)
 
-      this.datesToCalendar.push(dateToCalendar)
+
     }
+
+    return
 
   }
 
+  singleDay = (year: number, month: number, day: number) => {
+    return new Date(year, month, day);
+  }
 
+  protected readonly Object = Object;
 }
+

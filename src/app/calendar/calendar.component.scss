@@ -7,25 +7,26 @@ $cell-size: 48px;
 
   width: 8*$cell-size;
 
-  & > li {
-    width: $cell-size;
-    height: $cell-size;
-    text-align: center;
-    padding: 8px;
-    border: 1px solid transparent;
-    margin: 0;
-    background: #ffffff22;
-    opacity: .3;
-  }
 
   .current-month {
     opacity: 1;
   }
 
-  .today{
+  .today {
     background: yellow;
     color: black;
     font-weight: bold;
   }
 
+}
+
+.day-container {
+  width: $cell-size;
+  height: $cell-size;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid transparent;
+  margin: 0;
+  background: #ffffff22;
+  opacity: .3;
 }
