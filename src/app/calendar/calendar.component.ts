@@ -33,8 +33,10 @@ export class CalendarComponent implements OnInit {
       this.calendarByWeek.splice(0, this.calendarByWeek.length)
     }
 
-    const loopControllerStart = -6 - firstDayOfMonth.getDay() + 7 < 0 ? -6 - firstDayOfMonth.getDay() + 7 : -7
+    const loopControllerStart = -6 - firstDayOfMonth.getDay() + 7 <= 0 ? -6 - firstDayOfMonth.getDay() + 7 : -6
     const loopControllerEnd = lastDayOfMonth.getDate() + 7 - lastDayOfMonth.getDay()
+
+    console.log(-6 - firstDayOfMonth.getDay() + 7 < 0, loopControllerStart, loopControllerEnd)
 
     for (let i = loopControllerStart; i < loopControllerEnd; i++) {
       const dayDate = this.singleDay(year, month, i)
