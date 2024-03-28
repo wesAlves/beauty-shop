@@ -52,6 +52,11 @@ $cell-size: 48px;
   font-weight: bold;
 }
 
+.selected{
+  border: 1px solid;
+  border-radius: 8px;
+}
+
 .appointment {
   &::before {
     content: "";

@@ -13,6 +13,7 @@ export class CalendarComponent implements OnInit {
   currentDate: Date = new Date();
   calendarByWeek: Date[] = []
   displayedMonth = 0
+  selectedDay = this.currentDate
 
 
   constructor() {
@@ -51,9 +52,13 @@ export class CalendarComponent implements OnInit {
     this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
   }
 
-  today(){
+  today() {
     this.displayedMonth = this.currentDate.getMonth();
     this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
+  }
+
+  selectDay(day: Date) {
+    this.selectedDay = day
   }
 
 }

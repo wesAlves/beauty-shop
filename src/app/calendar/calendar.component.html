@@ -30,8 +30,10 @@
        [ngClass]="{
          'current-month': currentDate.getMonth() === day.getMonth() && currentDate.getFullYear() === day.getFullYear() ,
          'today': currentDate.toDateString() === day.toDateString(),
-         'past-event': currentDate > day
-         }">
+         'past-event': currentDate > day,
+         'selected':selectedDay.toDateString() === day.toDateString()
+         }"
+       (click)="selectDay(day)">
     {{ day.getDate() }}
   </div>
 </div>
