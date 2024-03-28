@@ -1,9 +1,23 @@
-<div class="header">
-  <button class="btn btn-outline-light" (click)="offSetMonth(-1)" aria-label="Previews month"><</button>
-  <h3 style="font-size: 16px; margin-bottom: 0;display: block; align-self: center">{{ months[calendarByWeek[14].getMonth()] }} - {{ calendarByWeek[14].getFullYear() }}</h3>
-  <button class="btn btn-light" (click)="today()">Today</button>
-  <button class="btn btn-outline-light" (click)="offSetMonth(1)" aria-label="Next month">></button>
+<div class="header-container">
+  <div class="header">
+    <button class="btn btn-outline-light" (click)="offSetMonth(-1)" aria-label="Previews month"><</button>
+    <h3
+      style="font-size: 16px; margin-bottom: 0;display: block; align-self: center">{{ months[calendarByWeek[14].getMonth()] }}
+      - {{ calendarByWeek[14].getFullYear() }}</h3>
+    <button class="btn btn-outline-light" (click)="offSetMonth(1)" aria-label="Next month">></button>
+  </div>
+
+  <button class="mt-3 w-100 btn"
+          [ngClass]="{
+          'btn-light': !(currentDate.getMonth() === calendarByWeek[14].getMonth() && currentDate.getFullYear() === calendarByWeek[14].getFullYear()),
+          'opacity-25': currentDate.getMonth() === calendarByWeek[14].getMonth() && currentDate.getFullYear() === calendarByWeek[14].getFullYear()
+          }"
+          [disabled]="currentDate.getMonth() === calendarByWeek[14].getMonth() && currentDate.getFullYear() === calendarByWeek[14].getFullYear()"
+          (click)="today()">
+    Today
+  </button>
 </div>
+
 
 <div class="calendar-container">
   <div class="day-container text-highlight" *ngFor="let dayName of weekdays">

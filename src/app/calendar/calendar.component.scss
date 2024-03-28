@@ -2,12 +2,17 @@
 
 $cell-size: 48px;
 
-.header{
-  width: 7*$cell-size;
+.header {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  margin-bottom: 16px;
+
+
+  &-container {
+    width: 7*$cell-size;
+    margin-bottom: 16px;
+  }
+
 }
 
 .calendar-container {
@@ -32,7 +37,7 @@ $cell-size: 48px;
   position: relative;
 }
 
-.text-highlight{
+.text-highlight {
   opacity: 1;
   background: rgb(239 239 239 / 4%)
 }
