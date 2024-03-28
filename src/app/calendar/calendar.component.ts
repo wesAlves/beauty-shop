@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-calendar',
@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent implements OnInit {
+  @Output() daySelected = new EventEmitter<Date>()
 
   months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outrubro", "Novembro", "Dezembro"]
   weekdays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sesta-feira", "Sábado"]
@@ -58,7 +59,8 @@ export class CalendarComponent implements OnInit {
   }
 
   selectDay(day: Date) {
-    this.selectedDay = day
+    this.selectedDay = day;
+    this.daySelected.emit(this.selectedDay);
   }
 
 }
