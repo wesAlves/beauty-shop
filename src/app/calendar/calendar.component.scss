@@ -25,6 +25,11 @@ $cell-size: 48px;
   position: relative;
 }
 
+.text-highlight{
+  opacity: 1;
+  background: rgb(239 239 239 / 4%)
+}
+
 .current-month {
   opacity: 1;
 }

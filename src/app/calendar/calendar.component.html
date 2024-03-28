@@ -1,13 +1,20 @@
-<h3>{{ months[calendarByWeek[14].getMonth()] }} - {{calendarByWeek[14].getFullYear()}}</h3>
+<h3>{{ months[calendarByWeek[14].getMonth()] }} - {{ calendarByWeek[14].getFullYear() }}</h3>
+
 <div class="calendar-container">
-    <div class="day-container appointment" *ngFor="let day of calendarByWeek"
-         [ngClass]="{
+  <div class="day-container text-highlight" *ngFor="let dayName of weekdays">
+    {{ dayName[0].toUpperCase() }}
+  </div>
+</div>
+
+<div class="calendar-container">
+  <div class="day-container appointment" *ngFor="let day of calendarByWeek"
+       [ngClass]="{
          'current-month': currentDate.getMonth() === day.getMonth() && currentDate.getFullYear() === day.getFullYear() ,
          'today': currentDate.toDateString() === day.toDateString(),
          'past-event': currentDate > day
          }">
-      {{ day.getDate() }}
-    </div>
+    {{ day.getDate() }}
+  </div>
 </div>
 
 <button (click)="offSetMonth(-1)">Previews month</button>
