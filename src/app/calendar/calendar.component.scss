@@ -2,6 +2,14 @@
 
 $cell-size: 48px;
 
+.header{
+  width: 7*$cell-size;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 16px;
+}
+
 .calendar-container {
   list-style: none;
   display: flex;

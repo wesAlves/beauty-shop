@@ -1,4 +1,9 @@
-<h3>{{ months[calendarByWeek[14].getMonth()] }} - {{ calendarByWeek[14].getFullYear() }}</h3>
+<div class="header">
+  <button class="btn btn-outline-light" (click)="offSetMonth(-1)" aria-label="Previews month"><</button>
+  <h3 style="font-size: 16px; margin-bottom: 0;display: block; align-self: center">{{ months[calendarByWeek[14].getMonth()] }} - {{ calendarByWeek[14].getFullYear() }}</h3>
+  <button class="btn btn-light" (click)="today()">Today</button>
+  <button class="btn btn-outline-light" (click)="offSetMonth(1)" aria-label="Next month">></button>
+</div>
 
 <div class="calendar-container">
   <div class="day-container text-highlight" *ngFor="let dayName of weekdays">
@@ -17,7 +22,5 @@
   </div>
 </div>
 
-<button (click)="offSetMonth(-1)">Previews month</button>
-<button (click)="offSetMonth(1)">Next month</button>
-<button (click)="today()">Today</button>
+
 
