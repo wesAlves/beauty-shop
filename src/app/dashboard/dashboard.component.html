@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 class="py-5">Dashboard</h1>
+  <div class="row">
+    <div class="col-9">
+      <div class="mt-5">
+        <h2 style="font-size: 24px">Próximo agendamento</h2>
+        <div>Jaca Melão as 11:00 até as 12:00 lavação e hidratação</div>
+      </div>
+
+      <div class="mt-5">
+        <h2 style="font-size: 24px">Agendamentos para <span>{{ selectedDay.toDateString() }}</span></h2>
+
+        <div class="card p-3 my-3" *ngFor="let appointment of appointments">
+          <div class="card-header">
+            <h3 class="card-title">{{ appointment.costumer }}</h3>
+          </div>
+          <div class="card-body">
+            <div>Agendado para iniciar as: {{ appointment.dateTime.getHours() }}
+              :{{ appointment.dateTime.getMinutes() }}
+            </div>
+            <div>Serviço: {{ appointment.service }}</div>
+            <div>Descrição: {{ appointment.serviceDescription }}</div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-6" #calendarShort>
+        <button class="btn btn-primary">Add new event</button>
+      </div>
+    </div>
+
+    <div class="col-md-3 mt-5">
+      <app-calendar (daySelected)="serverElement($event)"></app-calendar>
+    </div>
+  </div>
+</div>
