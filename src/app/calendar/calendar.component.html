@@ -1,7 +1,6 @@
-<h3>{{ months[currentDate.getMonth()] }}</h3>
+<h3>{{ months[calendarByWeek[14].getMonth()] }} - {{calendarByWeek[14].getFullYear()}}</h3>
 <div class="calendar-container">
-  <div *ngFor="let date of Object.values(calendarByWeek)">
-    <div class="day-container appointment" *ngFor="let day of date"
+    <div class="day-container appointment" *ngFor="let day of calendarByWeek"
          [ngClass]="{
          'current-month': day.getMonth() === currentDate.getMonth(),
          'today': currentDate.toDateString() === day.toDateString(),
@@ -9,8 +8,9 @@
          }">
       {{ day.getDate() }}
     </div>
-  </div>
 </div>
 
-<button (click)="offsetMonth(1)">Next month</button>
+<button (click)="offSetMonth(-1)">Previews month</button>
+<button (click)="offSetMonth(1)">Next month</button>
 <!--<button (click)="calendar(0,1)">Next month</button>-->
+
