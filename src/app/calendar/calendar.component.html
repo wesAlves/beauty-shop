@@ -2,7 +2,7 @@
 <div class="calendar-container">
     <div class="day-container appointment" *ngFor="let day of calendarByWeek"
          [ngClass]="{
-         'current-month': day.getMonth() === currentDate.getMonth(),
+         'current-month': currentDate.getMonth() === day.getMonth() && currentDate.getFullYear() === day.getFullYear() ,
          'today': currentDate.toDateString() === day.toDateString(),
          'past-event': currentDate > day
          }">
@@ -12,5 +12,4 @@
 
 <button (click)="offSetMonth(-1)">Previews month</button>
 <button (click)="offSetMonth(1)">Next month</button>
-<!--<button (click)="calendar(0,1)">Next month</button>-->
 
