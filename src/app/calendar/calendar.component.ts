@@ -11,7 +11,6 @@ export class CalendarComponent implements OnInit {
   weekdays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sesta-feira", "Sábado"]
 
   currentDate: Date = new Date();
-  // base_second = 86400e3;
 
   calendarByWeek: Record<string, Date[]> = {}
 
@@ -25,7 +24,7 @@ export class CalendarComponent implements OnInit {
     this.calendar()
   }
 
-  calendar = () => {
+  calendar = (offset?: { year: number, month: number, day: number }) => {
     const today = new Date();
     const year = today.getFullYear();
     const monthIndex = today.getMonth();
@@ -34,8 +33,6 @@ export class CalendarComponent implements OnInit {
 
     const firstDayOfMonth = this.singleDay(year, monthIndex, 1)
     const lastDayOfMonth = this.singleDay(year, monthIndex + 1, 0)
-
-    console.log(weekDayIndex)
 
     for (let i = -6 - firstDayOfMonth.getDay() + 7; i < lastDayOfMonth.getDate() + 7 - lastDayOfMonth.getDay(); i++) {
       const dayDate = this.singleDay(year, monthIndex, i)
@@ -54,6 +51,11 @@ export class CalendarComponent implements OnInit {
 
   singleDay = (year: number, month: number, day: number) => {
     return new Date(year, month, day);
+  }
+
+  offsetMonth(offsetYear: number) {
+    this.calendar()
+    console.log(this.calendarByWeek)
   }
 
   protected readonly Object = Object;
