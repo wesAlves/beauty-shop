@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-calendar',
@@ -16,8 +17,10 @@ export class CalendarComponent implements OnInit {
   displayedMonth = 0
   selectedDay = this.currentDate
 
+  selectedDate = this.currentDate;
 
-  constructor() {
+
+  constructor(private route: ActivatedRoute) {
   }
 
 //TODO: Full calendar must have 5 rows
@@ -25,6 +28,22 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.displayedMonth = this.currentDate.getMonth();
     this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
+
+    this.route.queryParams
+      .subscribe(
+        (qParams: Params) => {
+          const {year, month, date} = qParams;
+
+          if(year && month && date){
+            this.selectedDate = new Date(year, month, date)
+          }
+
+          console.log(this.selectedDate)
+
+        }
+      )
+
+
   }
 
   calendar = (year: number = 0, month: number = 0, day: number = 0) => {
