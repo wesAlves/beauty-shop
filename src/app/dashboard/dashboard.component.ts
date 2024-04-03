@@ -48,4 +48,5 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  protected readonly onclick = onclick;
 }

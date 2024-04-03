@@ -6,6 +6,8 @@ import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {HeaderComponent} from './header/header.component';
 import {CalendarComponent} from './calendar/calendar.component';
+import { EventsComponent } from './events/events.component';
+import { DatailComponent } from './events/datail/datail.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import {CalendarComponent} from './calendar/calendar.component';
     DashboardComponent,
     HeaderComponent,
     CalendarComponent,
+    EventsComponent,
+    DatailComponent,
   ],
   imports: [
     BrowserModule,
