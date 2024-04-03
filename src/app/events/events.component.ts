@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {appointments} from "../../api/api";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, provideRouter} from "@angular/router";
 
 
 interface IAppointment {
+  id: number,
   dateTime: Date,
   costumer: string,
   service: string,
@@ -50,4 +51,6 @@ export class EventsComponent implements OnInit {
     }
   }
 
+  protected readonly provideRouter = provideRouter;
+  protected readonly navigator = navigator;
 }
