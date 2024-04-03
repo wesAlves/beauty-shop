@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {appointments} from "../../../api/api";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-datail',
@@ -17,10 +18,28 @@ export class DatailComponent implements OnInit {
     serviceDescription: "Cutting nails and polish, apply finish stain"
   }
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.activatedRoute.params
+      .subscribe((params: Params) => {
+        const {id} = params;
+
+        this.appointment = this.getAppointment(id)
+
+      })
+
+  }
+
+  getAppointment(id: number | string) {
+    const foundAppointment = appointments.find(appointment => appointment.id === Number(id))
+
+    if (foundAppointment) {
+      return {...foundAppointment, dateTime: new Date(foundAppointment.dateTime)};
+    }
+
+    return this.appointment
   }
 
 }
