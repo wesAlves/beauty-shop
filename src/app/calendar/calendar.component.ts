@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterContentInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 
 @Component({
@@ -6,7 +6,7 @@ import {ActivatedRoute, Params, Route, Router} from "@angular/router";
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, AfterContentInit {
   @Output() daySelected = new EventEmitter<Date>()
 
   months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outrubro", "Novembro", "Dezembro"]
@@ -15,36 +15,35 @@ export class CalendarComponent implements OnInit {
   currentDate: Date = new Date();
   calendarByWeek: Date[] = []
   displayedMonth = 0
+
   selectedDay = this.currentDate
-
-  selectedDate = this.currentDate;
-
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
-//TODO: Full calendar must have 5 rows
-// thumbnail calendar must have 6 rows
   ngOnInit() {
+    console.log(this.selectedDay)
+  }
+
+  ngAfterContentInit() {
+
     this.activatedRoute.queryParams
       .subscribe(
         (qParams: Params) => {
           const {year, month, date} = qParams;
 
           if (year && month && date) {
-            this.selectedDate = new Date(year, month, date)
+            const selectedDate = new Date(year, month, date)
 
-            this.displayedMonth = this.selectedDate.getMonth();
+            this.displayedMonth = selectedDate.getMonth();
             this.calendar(this.selectedDay.getFullYear(), this.displayedMonth)
-            this.selectDay(this.selectedDate)
+            this.selectDay(selectedDate)
           } else {
             this.displayedMonth = this.currentDate.getMonth();
             this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
           }
         }
       )
-
-
   }
 
   calendar = (year: number = 0, month: number = 0, day: number = 0) => {
@@ -80,14 +79,13 @@ export class CalendarComponent implements OnInit {
   }
 
   selectDay(day: Date) {
-    this.selectedDay = day;
     this.daySelected.emit(this.selectedDay);
 
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {month: day.getMonth(), year: day.getFullYear(), date: day.getDate()}
     })
-
+    this.selectedDay = day;
   }
 
 }
