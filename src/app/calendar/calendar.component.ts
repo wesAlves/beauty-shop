@@ -76,7 +76,7 @@ export class CalendarComponent implements OnInit {
 
   selectDay(day: Date) {
 
-    this.router.navigate([], {
+    this.router.navigate(["/dashboard"], {
       relativeTo: this.activatedRoute,
       queryParams: {month: day.getMonth(), year: day.getFullYear(), date: day.getDate()}
     })
