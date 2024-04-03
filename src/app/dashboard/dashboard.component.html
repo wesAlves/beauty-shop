@@ -10,8 +10,7 @@
       <div class="mt-5">
         <h2 style="font-size: 24px">Agendamentos para <span>{{ selectedDay.toDateString() }}</span></h2>
 
-        <app-events *ngFor="let appointment of appointments" [appointment]=appointment></app-events>
-
+        <router-outlet></router-outlet>
       </div>
 
 
