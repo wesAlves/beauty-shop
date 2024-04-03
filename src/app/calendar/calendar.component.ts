@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterContentInit, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 
 @Component({
@@ -6,7 +6,7 @@ import {ActivatedRoute, Params, Route, Router} from "@angular/router";
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
-export class CalendarComponent implements OnInit, AfterContentInit {
+export class CalendarComponent implements OnInit {
   @Output() daySelected = new EventEmitter<Date>()
 
   months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outrubro", "Novembro", "Dezembro"]
@@ -15,17 +15,13 @@ export class CalendarComponent implements OnInit, AfterContentInit {
   currentDate: Date = new Date();
   calendarByWeek: Date[] = []
   displayedMonth = 0
+  selectedDay = this.currentDate;
 
-  selectedDay = this.currentDate
-
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private cd: ChangeDetectorRef) {
   }
+
 
   ngOnInit() {
-    console.log(this.selectedDay)
-  }
-
-  ngAfterContentInit() {
 
     this.activatedRoute.queryParams
       .subscribe(
@@ -79,13 +75,16 @@ export class CalendarComponent implements OnInit, AfterContentInit {
   }
 
   selectDay(day: Date) {
-    this.daySelected.emit(this.selectedDay);
 
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {month: day.getMonth(), year: day.getFullYear(), date: day.getDate()}
     })
+
+    Promise.resolve().then(() => this.daySelected.emit(day)); //promise to avoid error
     this.selectedDay = day;
+
+
   }
 
 }
