@@ -26,20 +26,21 @@ export class CalendarComponent implements OnInit {
 //TODO: Full calendar must have 5 rows
 // thumbnail calendar must have 6 rows
   ngOnInit() {
-    this.displayedMonth = this.currentDate.getMonth();
-    this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
-
     this.route.queryParams
       .subscribe(
         (qParams: Params) => {
           const {year, month, date} = qParams;
 
-          if(year && month && date){
+          if (year && month && date) {
             this.selectedDate = new Date(year, month, date)
+
+            this.displayedMonth = this.selectedDate.getMonth();
+            this.calendar(this.selectedDay.getFullYear(), this.displayedMonth)
+            this.selectDay(this.selectedDate)
+          } else {
+            this.displayedMonth = this.currentDate.getMonth();
+            this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
           }
-
-          console.log(this.selectedDate)
-
         }
       )
 
@@ -75,11 +76,14 @@ export class CalendarComponent implements OnInit {
   today() {
     this.displayedMonth = this.currentDate.getMonth();
     this.calendar(this.currentDate.getFullYear(), this.displayedMonth)
+    this.selectDay(this.currentDate)
   }
 
   selectDay(day: Date) {
     this.selectedDay = day;
     this.daySelected.emit(this.selectedDay);
+
+
   }
 
 }
