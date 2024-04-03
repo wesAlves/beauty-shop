@@ -1,0 +1,12 @@
+<div class="card p-3 my-3" *ngFor="let appointment of appointments">
+  <div class="card-header">
+    <h3 class="card-title">{{ appointment.costumer }}</h3>
+  </div>
+  <div class="card-body">
+    <div>Agendado para iniciar as: {{ appointment.dateTime.getHours() }}
+      :{{ appointment.dateTime.getMinutes() }}
+    </div>
+    <div>Serviço: {{ appointment.service }}</div>
+    <div>Descrição: {{ appointment.serviceDescription }}</div>
+  </div>
+</div>
